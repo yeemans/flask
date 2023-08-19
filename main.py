@@ -10,6 +10,7 @@ import ast
 from flask import Flask
 from flask import request
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -142,3 +143,6 @@ data = getData()
 allPokemon = getPokemon(data)
 df = getDataframe(data, allPokemon)
 data_ibs, neighbours = getSimilarities(df)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
